@@ -1,53 +1,145 @@
-# Next.js & HeroUI Template
+# Audio Noise Suppression
 
-This is a template for creating applications using Next.js 14 (app directory) and HeroUI (v2).
+A web application that leverages machine learning to remove background noise from audio files.
 
-[Try it on CodeSandbox](https://githubbox.com/heroui-inc/heroui/next-app-template)
+## Overview
 
-## Technologies Used
+This project combines a Next.js frontend with a Python Flask backend to provide an easy-to-use interface for audio noise suppression. The system uses a TensorFlow-based deep learning model to process audio files and remove unwanted background noise, providing cleaner audio output.
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [HeroUI v2](https://heroui.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+## Features
 
-## How to Use
+- Upload audio files through a user-friendly interface
+- Real-time processing of audio files with noise suppression
+- Preview of both original and processed audio
+- Download capability for processed audio files
+- Responsive design that works across devices
 
-### Use the template with create-next-app
+## Architecture
 
-To create a new project based on this template using `create-next-app`, run the following command:
+### Frontend (Next.js)
+- Built with Next.js and React
+- Uses HeroUI component library for UI elements
+- Responsive design with gradient background
+- Audio upload, preview, and download functionality
+
+### Backend (Flask)
+- RESTful API built with Flask
+- TensorFlow/TFLite for audio processing
+- Handles file uploads, processing, and serving processed files
+- Implements a U-Net style convolutional neural network for noise reduction
+
+## Tech Stack
+
+- **Frontend**:
+  - Next.js / React
+  - TypeScript
+  - HeroUI components
+  - Audio Web API
+
+- **Backend**:
+  - Python 3.11+
+  - Flask & Flask-CORS
+  - TensorFlow 2.18
+  - Librosa (audio processing)
+
+- **Machine Learning**:
+  - TensorFlow/Keras for model training
+  - TFLite for optimized inference
+  - Convolutional neural network architecture
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14+)
+- Python 3.11+
+- pip
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/audio-noise-suppression.git
+   cd audio-noise-suppression
+   ```
+
+2. **Set up the frontend**
+   ```bash
+   # Install dependencies
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Set up the backend**
+   ```bash
+   # Create a virtual environment (recommended)
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   
+   # Install dependencies
+   cd python
+   pip install -r requirements.txt
+   ```
+
+### Running the Application
+
+1. **Start the backend server**
+   ```bash
+   cd python
+   python main.py
+   ```
+   This will start the Flask API server on http://localhost:5000
+
+2. **Start the frontend development server**
+   ```bash
+   # From the project root
+   npm run dev
+   # or
+   yarn dev
+   ```
+   This will start the Next.js development server on http://localhost:3000
+
+3. **Access the application**
+   
+   Open your browser and navigate to http://localhost:3000
+
+## Usage
+
+1. Open the application in your browser
+2. Click on the "Upload Audio" button to select an audio file
+3. After uploading, click "Process Audio" to remove background noise
+4. Once processing is complete, you can:
+   - Listen to both the original and processed audio
+   - Download the processed audio file
+
+## Deployment
+
+### Frontend (Next.js)
+
+The Next.js application can be deployed to Vercel, Netlify, or any other Next.js-compatible hosting platform:
 
 ```bash
-npx create-next-app -e https://github.com/heroui-inc/next-app-template
+# Build the application
+npm run build
+# or
+yarn build
+
+# Start in production mode
+npm start
+# or
+yarn start
 ```
 
-### Install dependencies
+### Backend (Flask)
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+The Flask backend can be deployed to platforms like Heroku, AWS, Google Cloud, or any other Python-compatible hosting service:
 
 ```bash
-npm install
+# Set the PORT environment variable if needed
+export PORT=8080
+
+# Start the server
+python python/main.py
 ```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@heroui/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/heroui-inc/next-app-template/blob/main/LICENSE).
